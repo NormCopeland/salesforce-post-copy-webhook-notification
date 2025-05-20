@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>postCopyWebhook</members>
+        <members>postCopyWebhookTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>postCopyWebhookUrl__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>postCopyWebhookUrl__mdt.url__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>postCopyWebhookUrl.zapier</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>PostCopyWebhook</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <version>63.0</version>
+</Package>
