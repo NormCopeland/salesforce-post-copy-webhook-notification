@@ -8,16 +8,22 @@ public class postCopyWebhook implements SandboxPostCopy {
     }
 
     public void runApexClass(SandboxContext context) {
-        // Send a notification email to confirm execution
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setToAddresses(new String[] {'webhook-test@spms.ca'});
-        mail.setSubject('postCopyWebhook executed');
-        mail.setPlainTextBody('The postCopyWebhook logic ran in this org: ' + UserInfo.getOrganizationName() + ' (' + UserInfo.getOrganizationId() + ')');
-        Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
-        sendWebhook('unknown', UserInfo.getOrganizationId(), UserInfo.getOrganizationName());
+        System.debug('postCopyWebhook: runApexClass started');
+        try {
+            System.debug('postCopyWebhook: About to call sendWebhook');
+            sendWebhook('unknown', UserInfo.getOrganizationId(), UserInfo.getOrganizationName());
+            System.debug('postCopyWebhook: sendWebhook called successfully');
+        } catch (Exception e) {
+            System.debug('postCopyWebhook: Exception: ' + e.getMessage() + ' - ' + e.getStackTraceString());
+        }
+        System.debug('postCopyWebhook: runApexClass finished');
     }
 
     public static void sendWebhook(String sandboxName, String orgId, String orgName) {
+        System.debug('postCopyWebhook: sendWebhook called with values:');
+        System.debug('  sandboxName: ' + sandboxName);
+        System.debug('  orgId: ' + orgId);
+        System.debug('  orgName: ' + orgName);
         String webhookUrl;
         if (Test.isRunningTest() && testWebhookUrl != null) {
             webhookUrl = testWebhookUrl;
