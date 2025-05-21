@@ -10,8 +10,10 @@ public class postCopyWebhook implements SandboxPostCopy {
     public void runApexClass(SandboxContext context) {
         System.debug('postCopyWebhook: runApexClass started');
         try {
+            String sandboxName = System.Domain.current().getSandboxName();
+            System.debug('postCopyWebhook: Detected sandboxName = ' + sandboxName);
             System.debug('postCopyWebhook: About to call sendWebhook');
-            sendWebhook('unknown', UserInfo.getOrganizationId(), UserInfo.getOrganizationName());
+            sendWebhook(sandboxName, UserInfo.getOrganizationId(), UserInfo.getOrganizationName());
             System.debug('postCopyWebhook: sendWebhook called successfully');
         } catch (Exception e) {
             System.debug('postCopyWebhook: Exception: ' + e.getMessage() + ' - ' + e.getStackTraceString());
