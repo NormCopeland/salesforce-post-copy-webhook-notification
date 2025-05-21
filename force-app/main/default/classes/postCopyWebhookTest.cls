@@ -17,16 +17,15 @@ public class postCopyWebhookTest {
     static void testSendWebhook() {
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
 
-        String sandboxName = 'TestSandbox';
-        String orgId = '00Dxx0000001gPFEAY';
-        String orgName = 'TestOrgName';
-
         Test.startTest();
-        postCopyWebhook.sendWebhook(sandboxName, orgId, orgName);
+        // Call sendWebhook directly
+        postCopyWebhook.sendWebhook('TestSandbox', '00Dxx0000001gPFEAY', 'Test Org');
+        // Call sendTestWebhook directly
+        postCopyWebhook.sendTestWebhook('TestSandbox', '00Dxx0000001gPFEAY', 'Test Org');
         Test.stopTest();
 
         // Verify the request body contains orgName
         System.assert(postCopyWebhookTest.lastRequestBody != null, 'Request body should not be null');
-        System.assert(postCopyWebhookTest.lastRequestBody.contains('"orgName":"' + orgName + '"'), 'Request body should contain orgName');
+        System.assert(postCopyWebhookTest.lastRequestBody.contains('"orgName":"' + 'Test Org' + '"'), 'Request body should contain orgName');
     }
 }
