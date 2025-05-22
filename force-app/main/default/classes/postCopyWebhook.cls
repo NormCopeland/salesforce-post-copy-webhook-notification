@@ -36,19 +36,27 @@ public class postCopyWebhook implements SandboxPostCopy {
         System.debug('postCopyWebhook: runApexClass finished');
     }
 
+    @TestVisible
     private static String extractSandboxName(String userName) {
         System.debug('postCopyWebhook: extractSandboxName called with userName = ' + userName);
-        Integer lastDot = userName.lastIndexOf('.');
         Integer atSign = userName.indexOf('@');
-        System.debug('postCopyWebhook: lastDot = ' + lastDot + ', atSign = ' + atSign);
-        // If there's a dot after the '@', treat as sandbox username
-        if (lastDot > atSign) {
+        // Salesforce usernames always have an @
+        String afterAt = userName.substring(atSign + 1);
+        Integer dotCount = 0;
+        for (Integer i = 0; i < afterAt.length(); i++) {
+            if (afterAt.substring(i, i+1) == '.') {
+                dotCount++;
+            }
+        }
+        if (dotCount >= 2) {
+            Integer lastDot = userName.lastIndexOf('.');
             String sandboxName = userName.substring(lastDot + 1);
             System.debug('postCopyWebhook: Detected sandbox username, returning sandboxName = ' + sandboxName);
             return sandboxName;
+        } else {
+            System.debug('postCopyWebhook: Only one or zero dots after @, returning PRODUCTION');
+            return 'PRODUCTION';
         }
-        System.debug('postCopyWebhook: No sandbox name detected, returning PRODUCTION');
-        return 'PRODUCTION';
     }
 
     public static void sendWebhook(String sandboxName, String orgId, String orgName) {

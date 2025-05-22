@@ -3,6 +3,8 @@
     <types>
         <members>postCopyWebhook</members>
         <members>postCopyWebhookTest</members>
+        <members>PostCopyWebhookQueueable</members>
+        <members>PostCopyWebhookQueueableTest</members>
         <name>ApexClass</name>
     </types>
     <types>
