@@ -43,3 +43,25 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# IDE/Editor files
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+
+# Build artifacts
+dist/
+build/
+
+# Jest
+jest.config.js.map
+
+# Additional log patterns
+*.log.*
