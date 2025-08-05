@@ -4,6 +4,6 @@
     <protected>false</protected>
     <values>
         <field>url__c</field>
-        <value xsi:type="xsd:string">https://webhook.site/0ab17e2a-81a5-41d5-bb4b-df8d9836d765</value>
+        <value xsi:type="xsd:string">https://hooks.zapier.com/hooks/catch/21177896/27fm1uu/</value>
     </values>
 </CustomMetadata>

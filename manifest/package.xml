@@ -15,7 +15,7 @@
         <members>postCopyWebhookUrl__mdt.url__c</members>
         <name>CustomField</name>
     </types>
-    <types>
+      <types>
         <members>postCopyWebhookUrl.zapier</members>
         <name>CustomMetadata</name>
     </types>
